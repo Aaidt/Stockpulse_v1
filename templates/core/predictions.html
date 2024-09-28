@@ -1,0 +1,43 @@
+<!-- stockpulseapp/templates/predictions.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+
+<div class="container">
+    <h2>Stock Predictions</h2>
+
+    <!-- Form to accept stock symbol -->
+    <form method="POST" class="form-inline">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Get Predictions</button>
+    </form>
+
+    <!-- Display the stock symbol and predictions if available -->
+    {% if predictions %}
+        <h3>Predictions for: {{ stock_symbol }}</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Actual Prices</h4>
+                <ul>
+                    {% for price in predictions.actual %}
+                        <li>{{ price }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h4>Predicted Prices</h4>
+                <ul>
+                    {% for price in predictions.predicted %}
+                        <li>{{ price }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

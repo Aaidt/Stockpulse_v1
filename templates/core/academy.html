@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+      h1, h2,h3 {
+      color: #fff;
+      text-align: center;
+      margin: 20px;
+    }
+
+    h3{
+      text-align: left;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .center {
+      text-align: center;
+    }
+    .video-container iframe {
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .video-container iframe:hover {
+      transform: scale(1.05);
+    }
+
+    .podcast-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .podcast-container iframe {
+      margin: 10px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .podcast-container iframe:hover {
+      transform: scale(1.05);
+    }
+
+    .book{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:flex-start;
+        align-items: start;
+        text-align: left;
+        margin: 20px;
+        width: 40%;
+        max-height: 30vh;
+        text-wrap: wrap;
+        h3{
+          margin: 10px 0;
+          text-align: center;
+        }
+        img{
+          height: 500px;
+          width: auto;
+        }
+    }
+ 
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Welcome to TradePulse Academy!</h1>
+  
+  <h2>YouTube Courses</h2>
+  <div class="video-container">
+      <div class="video-wrapper">
+        <h3>Stocks</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/qdV7Q1ElI8Y?rel=0" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <h3>Mutual Funds</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/PbldLCsspgE?si=c6J0hJibnCvKxDNh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="center">
+          <a href="https://www.indmoney.com/mutual-funds">
+          <button>Invest now</button>
+        </a>
+        </div>
+      </div>
+      <div class="video-wrapper">
+          <h3>Cryptocurrency</h3>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/rYQgy8QDEBI?si=fMChiTY2ZVkXtQNm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+          <div class="video-wrapper">
+        <h3>Income Tax</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/A_JQK_k4Kyc?si=HgHOb2Y-xXV2JM3R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <h3>Insurance</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/uPqNNshSA9I?si=HPFVoNJmkt846EGx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <h3>How to invest in US stocks?</h3>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZNSQV-ZjxXE?si=KwQzXo1iKsiXp7s0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="center">
+          <a href="https://www.indmoney.com/us-stocks">
+          <button>Invest now</button>
+        </a>
+        </div>
+      </div>
+    </div>
+    
+  
+  <h2>Spotify Podcasts</h2>
+  <div class="podcast-container">
+    <!-- Replace SPOTIFY_EMBED_LINK with your Spotify embed code -->
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/2rSleYMOLiwZN6oCxALYcL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <!-- Add more podcasts if needed -->
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/4UTOYCCP9pDVsj7Iu5pRT6?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>  
+  </div>
+  <h2>Recommended Books</h2>
+  <div class="book-container" style="text-align: center;">
+      <div class="book" style="display: inline-block; text-align: left;">
+        <img src="https://m.media-amazon.com/images/I/71uCf5ujqFL._AC_UF894,1000_QL80_.jpg" alt="Book 1">
+        <h3>Investonomy</h3>
+        <p style="margin: 10px 0;">Author: Pranjal Kamra</p>
+        <p style="margin: 10px 0;">Description: Empowering investors with modern value investing principles and market insights.</p>
+      </div>
+      <div class="book" style="display: inline-block; text-align: left;">
+        <img src="https://m.media-amazon.com/images/I/91+t0Di07FL._AC_UF1000,1000_QL80_.jpg" alt="Book 1">
+        <h3>The Intelligent Investor</h3>
+        <p style="margin: 10px 0;">Author: Benjamin Graham</p>
+        <p style="margin: 10px 0;">Description: A classic guide to value investing, offering timeless wisdom for analyzing stocks and making investment decisions based on fundamental analysis.</p>
+    </div>
+    
+    </div>      
+</div>
+
+</body>
+
+{% endblock %}

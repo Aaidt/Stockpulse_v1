@@ -1,0 +1,80 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  <link href="{% static 'css/style.css' %}" rel='stylesheet'>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="placeholder"></div>
+        <div class="navholder">
+          <div class="navb">
+              <div class="navbar">
+                <div class="nav-left">
+                    <div class="navbar-link"><a href="{% url 'index' %}">Home</a></div>
+                    <div class="navbar-link"><a class="nav-link" href="https://www.policybazaar.com/" style="color: white">Insurance</a></div>
+                    <div class="navbar-link"><a class="nav-link" href="https://coin.zerodha.com/mf" style="color: white">Mutual Funds</a></div>
+                  </div>
+                  <div class="nav-logo">
+                    <img src="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1712660151/Trade_Pulse_idzyuu.png" alt="">
+                  </div>
+                  <div class="nav-right">
+                    <div class="navbar-link"><a class="nav-link" href="https://sbi.co.in/web/personal-banking/loans/personal-loans" style="color: white">Loan</a></div>
+                    <div class="navbar-link"><a class="nav-link" href="#" style="color: white">Income tax</a></div>
+                    <div class="navbar-link"><a href="#">Personal Finance</a></div>
+                  </div>
+              </div>
+            </div>
+        </div>
+    
+  <img src="https://www.tickertape.in/blog/wp-content/uploads/2020/08/Employees-Financial.png" width="100%">
+  <div class="card text-center bg-dark text-white">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Income Tax Calculator</h5>
+      <p class="card-text">An income tax calculator determines the amount of tax an individual owes based on income, deductions, and credits. It simplifies tax planning by providing accurate estimations for financial management.</p>
+      <a href="#" class="btn btn-success">Calculate now</a> <!-- Changed btn-primary to btn-success -->
+    </div>
+    <div class="card-footer">
+      Latest updated
+    </div>
+  </div>
+  <div class="card text-center bg-dark text-white">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">SIP Calculator</h5>
+      <p class="card-text">An SIP (Systematic Investment Plan) calculator helps investors forecast the potential returns on their mutual fund SIP investments, factoring in variables like investment amount, tenure, and expected rate of return.</p>
+      <a href="#" class="btn btn-success">Calculate now</a> <!-- Changed btn-primary to btn-success -->
+    </div>
+    <div class="card-footer">
+      Latest updated
+    </div>
+  </div>
+  <div class="card text-center bg-dark text-white">
+    <div class="card-header">
+      Featured
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">EMI Calculator</h5>
+      <p class="card-text">An EMI (Equated Monthly Installment) calculator assists in calculating the monthly repayment amount for loans, considering factors such as principal amount, interest rate, and tenure, aiding borrowers in financial planning.</p>
+      <a href="#" class="btn btn-success">Calculate now</a> <!-- Changed btn-primary to btn-success -->
+    </div>
+    <div class="card-footer">
+      Latest updated
+    </div>
+  </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+{% endblock %}

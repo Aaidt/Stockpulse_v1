@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+  transition: 0.3s all ease-in-out;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(https://i.brecorder.com/primary/2022/12/241730193a78f7e.gif);
+  background-size: cover;
+}
+.shadow-wrap {
+  border-radius: 5px;
+  padding: 0;
+  /* background-color: #f0f2fb; */
+}
+.form-wrap {
+  border-radius: 10px;
+  min-width: 30vw!important;
+  /* max-width: 40vw!important; */
+  box-shadow: 0 0 30px 0 rgba(163, 183, 255, 0.5);
+  background: #141E30;
+  background: -webkit-linear-gradient(to right, #243B55, #141E30);
+  background: linear-gradient(to right, #243B55, #141E30);
+
+
+  padding: 70px;
+  max-height: 95vh;
+}
+
+h3{
+  color: #fff;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-wrap form * {
+  display: block;
+  width: 100%;
+}
+
+.helptext{
+  font-size: 14px!important;
+}
+.form-wrap form label {
+  margin-bottom: 5px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 26px;
+}
+.form-wrap form input {
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: 1px solid #dae1f5;
+  background: rgb(211, 225, 238);
+  color: #545d7a;
+}
+#id_username {
+  margin-bottom: 20px;
+}
+.form-wrap button {
+  border-radius: 5px;
+  background: #10182f;
+  color: #fff;
+  border: 1px groove #edeff5;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  padding: 12px 68px;
+  font-weight: 700;
+  margin-top: 30px;
+  line-height: 26px;
+  transition: 0.3s all ease-in-out;
+}
+
+.login-link{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+p{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+ul{
+  display: none!important;
+}
+
+.errorlist{
+  display: block!important;
+  color: red;
+}
+
+.signup-link {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 5px;
+  font-weight: 700;
+  /* text-align: center; */
+  line-height: 25px;
+  /* display: block; */
+  text-decoration: none;
+}
+.signup-link:hover {
+  text-decoration: underline;
+}
+.form-wrap button:hover {
+  border: none;
+  background-color: #fff;
+  color: #10182f;
+  border-color: #10182f;
+  transition: all 0.3s ease-in-out;
+}
