@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<title>TradePulse - Personal Finance</title>
+<link rel="icon" href="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1712660151/Trade_Pulse_ico_cjjdf5.png" type="image/x-icon">  
+<style>
+  body {
+    
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #212529;
+    color: #fff;
+  }
+
+  .c-container{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 5vh;
+    flex-wrap: nowrap;
+  }
+
+  .calc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    text-decoration: underline;
+  }
+
+  iframe {
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+  <div class="c-container">
+  
+  <div class="calc-container" id="sipForm" style="text-align: center; margin-top: 10px;">
+    <h2>SIP Calculator</h2>
+    <label for="monthlyAmount" style="display: block; margin-bottom: 10px;">Enter Monthly SIP Amount (INR): </label>
+    <input type="number" id="monthlyAmount" placeholder="Enter amount" min="vh1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br>
+    <label for="returns" style="display: block; margin-bottom: 10px;">Enter Expected Returns (in %): </label>
+    <input type="number" id="returns" placeholder="Enter returns" min="1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br>
+    <label for="investmentPeriod" style="display: block; margin-bottom: 10px;">Enter Investment Period (in years): </label>
+    <input type="number" id="investmentPeriod" placeholder="Enter period" min="1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br><br>
+    <button onclick="calculateSIP()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate SIP</button>
+    <p id="sipResult" style="margin-top: 20px; font-size: 18px;"></p>
+  </div>
+
+ 
+ 
+  <div class="calc-container" id="emiForm" style="text-align: center; margin-top: 10px;">
+     <h2>EMI Calculator</h2>
+    <label for="loanAmount" style="display: block; margin-bottom: 10px;">Enter Loan Amount (INR): </label>
+    <input type="number" id="loanAmount" placeholder="Enter amount" min="1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br>
+    <label for="interestRate" style="display: block; margin-bottom: 10px;">Enter Rate of Interest (in %): </label>
+    <input type="number" id="interestRate" placeholder="Enter interest rate" min="1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br>
+    <label for="loanPeriod" style="display: block; margin-bottom: 10px;">Enter Loan Period (in years): </label>
+    <input type="number" id="loanPeriod" placeholder="Enter period" min="1" style="width: 200px; padding: 8px; border-radius: 5px; border: 1px solid #ccc; margin-bottom: 20px;">
+    <br><br>
+    <button onclick="calculateEMI()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">Calculate EMI</button>
+    <p id="emiResult" style="margin-top: 20px; font-size: 18px;"></p>
+  </div>
+</div>
+
+<script>
+  function calculateSIP() {
+    var monthlyAmount = parseFloat(document.getElementById('monthlyAmount').value);
+    var returns = parseFloat(document.getElementById('returns').value);
+    var investmentPeriod = parseFloat(document.getElementById('investmentPeriod').value);
+
+    if (!isNaN(monthlyAmount) && !isNaN(returns) && !isNaN(investmentPeriod) && monthlyAmount > 0 && returns > 0 && investmentPeriod > 0) {
+      var totalAmount = 0;
+      var monthlyInterestRate = (returns / 100) / 12;
+      var totalMonths = investmentPeriod * 12;
+
+      for (var i = 0; i < totalMonths; i++) {
+        totalAmount = (totalAmount + monthlyAmount) * (1 + monthlyInterestRate);
+      }
+
+      document.getElementById('sipResult').innerText = "Your Accumulated Amount: " + totalAmount.toFixed(2) + " INR";
+    } else {
+      document.getElementById('sipResult').innerText = "Please enter valid inputs.";
+    }
+  }
+
+  function calculateEMI() {
+    var loanAmount = parseFloat(document.getElementById('loanAmount').value);
+    var interestRate = parseFloat(document.getElementById('interestRate').value);
+    var loanPeriod = parseFloat(document.getElementById('loanPeriod').value);
+
+    if (!isNaN(loanAmount) && !isNaN(interestRate) && !isNaN(loanPeriod) && loanAmount > 0 && interestRate > 0 && loanPeriod > 0) {
+      var emi;
+      var monthlyInterestRate = (interestRate / 100) / 12;
+      var totalMonths = loanPeriod * 12;
+
+      emi = (loanAmount * monthlyInterestRate * Math.pow((1 + monthlyInterestRate), totalMonths)) / (Math.pow((1 + monthlyInterestRate), totalMonths) - 1);
+
+      document.getElementById('emiResult').innerText = "Your Monthly EMI: " + emi.toFixed(2) + " INR";
+    } else {
+      document.getElementById('emiResult').innerText = "Please enter valid inputs.";
+    }
+  }
+</script>
+</body>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% load static %}
+<link href="{% static 'css/news.css' %}" rel='stylesheet'>
+<script src="{% static 'js/news.js' %}"> </script>
+<body>
+  <div class="placeholder"></div>
+  <div class="navholder">
+    <div class="navb">
+        <div class="navbar">
+          <div class="nav-left">
+            <a class="navbar-link" id="finance" onclick="onNavItemClick('finance')">Finance</a>
+          </div>
+          <div class="nav-logo">
+            <img src="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1712660151/Trade_Pulse_idzyuu.png" alt="">
+          </div>
+          <div class="nav-right">
+            <a class="navbar-link" id="Cryptocurrency" onclick="onNavItemClick('Cryptocurrency')">Cryptocurrency</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="cards-container container flex" id="cards-container">
+            
+      </div>
+    </main>
+
+    <template id="template-news-card">
+      <div class="card">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img">
+            </div>
+          <div class="card-content">
+              <h3 id="news-title">This is the Title</h3>
+              <h6 class="news-source" id="news-source">End Gadget 26/08/2023</h6>
+              <p class="news-desc" id="news-desc">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae saepe quis voluptatum quisquam vitae doloremque facilis molestias quae ratione cumque!</p>
+          </div>
+      </div>
+  </template>
+
+</body>
+ 
+{% endblock %}

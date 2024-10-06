@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/style.css' %}" rel='stylesheet'>
+     <link rel="icon" href="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1712660151/Trade_Pulse_ico_cjjdf5.png" type="image/x-icon">  
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <!-- <script src="{% static 'js/news.js' %}"> </script> -->
+
+    <title> StockPulse</title>
+
+
+
+
+  </head>
+<body>
+  {% if show_navbar %}
+  <div class="placeholder"></div>
+        <div class="navholder">
+          <div class="navb">
+              <div class="navbar">
+                <div class="nav-left">
+                    <div class="navbar-link"><a href="{% url 'index' %}">Home</a></div>
+                    <div class="navbar-link"><a href="{% url 'crypto' %}">Cryptocurrency</a></div>
+                    <div class="navbar-link"><a href="{% url 'academy' %}">Academy</a></div>
+                  </div>
+                  <div class="nav-logo">
+                    <img src="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1725179199/stockpulselogo_wdhb55.png" alt="">
+                  </div>
+                  <div class="nav-right">
+                    <div class="navbar-link"><a href="http://127.0.0.1:5500/news.html">News</a></div>
+                    <!-- <div class="navbar-link"><a href="{% url 'watchlist' %}">Watchlist</a></div> -->
+                    <div class="navbar-link"><a href="#">Personal Finance <span><i class="fa fa-caret-down"></i></span></a>
+                      <div class="dropdown">
+                      <ul>
+                          <li><a href="{% url 'calculator' %}">Calculator</a></li>
+                          <li><a class="nav-link" href="https://www.policybazaar.com/">Insurance</a></li>
+                          <li><a href="https://coin.zerodha.com/mf">Mutual Funds</a></li>
+                          <li><a class="nav-link" href="https://sbi.co.in/web/personal-banking/loans/personal-loans">Loan</a></li>
+                      </ul>
+                  </div>
+                </div>
+                    {% if request.user.is_authenticated %}
+                    <div class="navbar-link login"><a class="login" href="" style="pointer-events: none;" ><i class="fa-solid fa-user"></i></a>
+                      <div class="dropdown">
+                        <ul>
+                            <li><a href="{% url "stockpulseapp:logout" %}">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+                          </div>
+                    </div>
+                    {% else %}
+                    <div class="navbar-link"><a class="login-button" href="{% url "stockpulseapp:login" %}"><i class="fa-solid fa-right-to-bracket"></i></a></div>
+                    {% endif %}
+                  </div>
+              </div>
+              
+            </div>
+        </div>
+       
+        {% endif %}
+    {% block content %}
+
+
+
+
+    
+
+    {% endblock %}
+    {% if show_footer %}
+    <div class="footer">
+      <div class="container">
+            <div class="row">
+              <div class="col" id="information">
+                <img src="https://res.cloudinary.com/ds2uw5gcw/image/upload/v1712660151/Trade_Pulse_idzyuu.png" alt="" class="logo1">
+                <h1>Trade Pulse ™</h1>
+                <p>Seamlessly monitor market trends, make informed decisions, and access advanced features to optimize trading strategies for better outcomes.</p>
+    
+              </div>
+          <div class="col" id="Services">
+            <h4>Products</h4>
+            <div class="linked">
+              <p>
+                <a href="#!" class="text-reset">Stock Forecasting</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Algorithmic Trading</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Advanced Charting</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Stock Screener</a>
+              </p>
+          </div>
+          </div>
+          <div class="col" id="Links">
+            <h4>Links</h4>
+            <div class="linked">
+              <p>
+                <a href="#!" class="text-reset">Pricing</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Settings</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Orders</a>
+              </p>
+              <p>
+                <a href="#!" class="text-reset">Help</a>
+              </p>
+            </div>
+          </div>
+          <div class="col" id="Contact Us">
+            <h4>Contact Us</h4>
+            <div class="contact-details">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <p>tradepulse.support@gmail.com</p>
+             
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <p>+91-595318359</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<link href="{% static 'css/register.css' %}" rel='stylesheet'>
+<!-- <div class="shadow-wrap"> -->
+ <div class="form-wrap">
+  <h3>Signup </h3>
+<form method="POST">
+ {% csrf_token %}
+ {{form.as_p}}
+ <button type="submit">Submit</button>
+</form>
+<div class="login-link">
+<p>Already have an account? <a class="signup-link" href="{% url "stockpulseapp:login" %}">Login</a></p>
+</div>
+</div>
+
+{% endblock content %}
