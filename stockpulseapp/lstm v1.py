@@ -479,19 +479,21 @@ if __name__ == "__main__":
     from newsapi import NewsApiClient
     from datetime import date, timedelta
     from nltk.sentiment.vader import SentimentIntensityAnalyzer
+    
+    import plotly.graph_objects as go
 
     import nltk
     nltk.download('vader_lexicon')
 
     # Initialize News API Client (Replace with your actual API Key)
-    newsapi = NewsApiClient(api_key='your_news_api_key')
+    newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
 
     # Set start and end dates
     START = "2010-01-01"
     TODAY = date.today().strftime("%Y-%m-%d")
 
     # Streamlit title and description
-    st.title("Enhanced Stock Price Prediction App")
+    st.title("STOCK PREDICTION ")
     st.write("Enter the stock symbol (e.g., AAPL for Apple, TSLA for Tesla) and get predictions, along with sentiment analysis and technical indicators.")
 
     # Input field to accept stock symbol from user
@@ -630,51 +632,145 @@ if __name__ == "__main__":
         future_dates = pd.date_range(start=TODAY, periods=days_ahead)
         future_df = pd.DataFrame({'Date': future_dates, 'Predicted Price': future_predictions_full[:, 0]})
 
+        #  # Improved plot for actual closing price along with moving averages
+        # st.subheader("Closing Price and Moving Averages")
+        # fig2, ax2 = plt.subplots(figsize=(12, 6))
+        # ax2.plot(data['Date'], data['Close'], color='blue', label="Actual Closing Price", linewidth=2)
+        # ax2.plot(data['Date'], data['MA10'], color='orange', label="10 Day MA", linestyle='--')
+        # ax2.plot(data['Date'], data['MA30'], color='green', label="30 Day MA", linestyle='--')
+        # ax2.set_xlabel('Date')
+        # ax2.set_ylabel('Price (USD)')
+        # ax2.set_title('Closing Price and Moving Averages')
+        # ax2.legend()
+        # ax2.grid()
+        # st.pyplot(fig2)
+        
         
 
-        # Plot the trading volume as a larger bar chart
-        st.subheader("Trading Volume")
-        fig_volume, ax_volume = plt.subplots(figsize=(12, 6))
-        ax_volume.bar(data['Date'], data['Volume'], color='lightblue', width=1)  # Increased width for better visibility
-        ax_volume.set_xlabel('Date')
-        ax_volume.set_ylabel('Volume')
-        ax_volume.set_title('Trading Volume Over Time')
-        ax_volume.grid(axis='y')
-        st.pyplot(fig_volume)
-
-        # Improved plot for actual closing price along with moving averages
+        # Closing Price and Moving Averages - Use Plotly for interactive chart
         st.subheader("Closing Price and Moving Averages")
-        fig2, ax2 = plt.subplots(figsize=(12, 6))
-        ax2.plot(data['Date'], data['Close'], color='blue', label="Actual Closing Price", linewidth=2)
-        ax2.plot(data['Date'], data['MA10'], color='orange', label="10 Day MA", linestyle='--')
-        ax2.plot(data['Date'], data['MA30'], color='green', label="30 Day MA", linestyle='--')
-        ax2.set_xlabel('Date')
-        ax2.set_ylabel('Price (USD)')
-        ax2.set_title('Closing Price and Moving Averages')
-        ax2.legend()
-        ax2.grid()
-        st.pyplot(fig2)
 
-        # Plot sentiment analysis as a line plot
-        st.subheader("Sentiment Analysis")
-        fig_sentiment, ax_sentiment = plt.subplots(figsize=(12, 6))
-        ax_sentiment.plot(data['Date'], data['Sentiment'], color='purple', marker='o', linestyle='-')  # Line plot with markers
-        ax_sentiment.set_ylabel('Sentiment Value')
-        ax_sentiment.set_title('Sentiment Analysis Over Time')
-        ax_sentiment.set_ylim(-1, 1)  # Limit Y-axis to range [-1, 1]
-        ax_sentiment.grid()
-        st.pyplot(fig_sentiment)
+        fig_ma = go.Figure()
+
+        # Plot the actual closing price
+        fig_ma.add_trace(go.Scatter(x=data['Date'], y=data['Close'], mode='lines', name='Actual Closing Price',
+                                    line=dict(color='blue', width=2)))
+
+        # Plot 10 Day Moving Average
+        fig_ma.add_trace(go.Scatter(x=data['Date'], y=data['MA10'], mode='lines', name='10 Day MA',
+                                    line=dict(color='orange', dash='dash')))
+
+        # Plot 30 Day Moving Average
+        fig_ma.add_trace(go.Scatter(x=data['Date'], y=data['MA30'], mode='lines', name='30 Day MA',
+                                    line=dict(color='green', dash='dash')))
+ 
+        # Set layout for the chart
+        fig_ma.update_layout(title="Closing Price and Moving Averages over time",
+                            xaxis_title="Date",
+                            yaxis_title="Price (USD)",
+                            hovermode="x unified",  # Allows hover over the entire x-axis
+                            legend=dict(x=0, y=1.1, orientation='h'),
+                            template='plotly_white')  # White background for a cleaner look
+
+        st.plotly_chart(fig_ma)
+
+
+        # # Plot the trading volume as a larger bar chart
+        # st.subheader("Trading Volume")
+        # fig_volume, ax_volume = plt.subplots(figsize=(12, 6))
+        # ax_volume.bar(data['Date'], data['Volume'], color='lightblue', width=1)  # Increased width for better visibility
+        # ax_volume.set_xlabel('Date')
+        # ax_volume.set_ylabel('Volume')
+        # ax_volume.set_title('Trading Volume Over Time')
+        # ax_volume.grid(axis='y')
+        # st.pyplot(fig_volume)
+
+       
+
+        # # Plot sentiment analysis as a line plot
+        # st.subheader("Sentiment Analysis")
+        # fig_sentiment, ax_sentiment = plt.subplots(figsize=(12, 6))
+        # ax_sentiment.plot(data['Date'], data['Sentiment'], color='purple', marker='o', linestyle='-')  # Line plot with markers
+        # ax_sentiment.set_ylabel('Sentiment Value')
+        # ax_sentiment.set_title('Sentiment Analysis Over Time')
+        # ax_sentiment.set_ylim(-1, 1)  # Limit Y-axis to range [-1, 1]
+        # ax_sentiment.grid()
+        # st.pyplot(fig_sentiment)
         
-        # Plot the predictions
+        
+
+        # Trading Volume - Use Plotly for interactive chart
+        st.subheader("Trading Volume")
+        fig_volume = go.Figure()
+        fig_volume.add_trace(go.Bar(x=data['Date'], y=data['Volume'], marker_color='lightblue', name='Volume'))
+        fig_volume.update_layout(title="Trading Volume Over Time", xaxis_title="Date", yaxis_title="Volume",
+                                hovermode="x unified")
+        st.plotly_chart(fig_volume)
+        
+        
+
+        # # Sentiment Analysis - Use Plotly for interactive chart
+        # st.subheader("Sentiment Analysis")
+        # fig_sentiment = go.Figure()
+        # fig_sentiment.add_trace(go.Scatter(x=data['Date'], y=data['Sentiment'], mode='lines+markers', name='Sentiment',
+        #                                 marker=dict(color='purple')))
+        # fig_sentiment.update_layout(title="Sentiment Analysis Over Time", xaxis_title="Date", yaxis_title="Sentiment",
+        #                             yaxis_range=[-1, 1], hovermode="x unified")
+        # st.plotly_chart(fig_sentiment)
+        
+        
+        # Combine Sentiment and Closing Price in a Dual Axis Plot
+        st.subheader("Closing Price and Sentiment Analysis")
+        fig_combined = go.Figure()
+
+        # Plot Closing Price on the primary y-axis
+        fig_combined.add_trace(go.Scatter(x=data['Date'], y=data['Close'], mode='lines', name='Close Price',
+                                        line=dict(color='blue', width=2)))
+
+        # Plot Sentiment on the secondary y-axis
+        fig_combined.add_trace(go.Scatter(x=data['Date'], y=data['Sentiment'], mode='lines+markers', name='Sentiment',
+                                        marker=dict(color='purple')))
+
+        # Update layout for dual y-axes
+        fig_combined.update_layout(title="Closing Price and Sentiment Analysis Over Time",
+                                xaxis_title="Date",
+                                yaxis_title="Closing Price (USD)",
+                                yaxis2=dict(title="Sentiment", overlaying='y', side='right', range=[-1, 1]),
+                                hovermode="x unified")
+
+        st.plotly_chart(fig_combined)
+
+                
+        # # Plot the predictions
+        # st.subheader(f"Predicted Stock Prices for {ticker} for the next {days_ahead} days")
+        # fig, ax = plt.subplots(figsize=(12, 6))
+        # ax.plot(future_df['Date'], future_df['Predicted Price'], color='red', label="Predicted Prices", marker='o')
+        # ax.set_xlabel('Date')
+        # ax.set_ylabel('Price (USD)')
+        # ax.set_title('Future Stock Price Predictions')
+        # ax.legend()
+        # ax.grid(True)
+        # st.pyplot(fig)
+        
+        # Future Stock Price Predictions - Use Plotly for interactive chart
         st.subheader(f"Predicted Stock Prices for {ticker} for the next {days_ahead} days")
-        fig, ax = plt.subplots(figsize=(12, 6))
-        ax.plot(future_df['Date'], future_df['Predicted Price'], color='red', label="Predicted Prices", marker='o')
-        ax.set_xlabel('Date')
-        ax.set_ylabel('Price (USD)')
-        ax.set_title('Future Stock Price Predictions')
-        ax.legend()
-        ax.grid(True)
-        st.pyplot(fig)
+
+        fig_predictions = go.Figure()
+
+        # Plot the predicted prices
+        fig_predictions.add_trace(go.Scatter(x=future_df['Date'], y=future_df['Predicted Price'], mode='lines+markers',
+                                            name='Predicted Prices', line=dict(color='red'), marker=dict(size=8)))
+
+        # Set layout for the chart
+        fig_predictions.update_layout(title=f"Future Stock Price Predictions for {ticker}",
+                                    xaxis_title="Date",
+                                    yaxis_title="Price (USD)",
+                                    hovermode="x unified",  # Allows hover over the entire x-axis
+                                    legend=dict(x=0, y=1.1, orientation='h'),
+                                    template='plotly_white')
+
+        st.plotly_chart(fig_predictions)
+
 
         # Show future predictions in a table
         st.subheader("Future Predictions")
