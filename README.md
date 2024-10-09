@@ -4,11 +4,6 @@
 This project is a Streamlit-based web application that predicts stock prices using LSTM (Long Short-Term Memory) neural networks. The app also incorporates sentiment analysis of financial news and technical indicators like moving averages (MA) and RSI (Relative Strength Index) for enhanced stock price prediction.
 
 ## Features:
-- **LSTM Model**: Predicts future stock prices based on historical data.
-- **Sentiment Analysis**: Uses news headlines and articles to gauge market sentiment on the stock.
-- **Technical Indicators**: Includes Moving Averages (MA10, MA30) and RSI to provide additional market insights.
-- **Interactive Visualizations**: Includes enhanced interactive plots for stock prices, technical indicators, and future price predictions.
-- **Trading Volume**: Displays trading volume over time as an easy-to-read bar chart.
 
 ### Sentiment Analysis:
 Sentiment is derived from the most recent 30 days of news articles related to the stock. The VADER sentiment model classifies the news as positive, neutral, or negative, and this sentiment is used as an input feature for the LSTM model.
