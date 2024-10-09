@@ -19,8 +19,10 @@ This project is a Streamlit-based web application that predicts stock prices usi
 - **ta**: For calculating technical indicators like RSI.
   
 ## Screenshots:
-![Screenshot 1](screenshots/ss1.png)
-![Screenshot 2](screenshots/ss2.png)
+
+<img src="screenshots/pred_front.png" alt="Screenshot 1" width="600" height="400">
+<img src="screenshots/cp_MA.png" alt="Screenshot 2" width="600" height="400">
+
 ## Setup Instructions:
 To set up and run the project locally, follow these steps:
 
