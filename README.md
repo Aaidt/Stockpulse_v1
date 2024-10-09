@@ -34,7 +34,7 @@ To set up and run the project locally, follow these steps:
 3. Create a virtual environment and activate it:
     ```bash
     python -m venv env
-    source env/bin/activate  # For Windows: .\env\Scripts\activate
+    # For Windows: .\env\Scripts\activate
     ```
 4. Install the required packages:
     ```bash
