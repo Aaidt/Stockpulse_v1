@@ -1,14 +1,14 @@
-📈 #Stock Prediction Website
+📈 # Stock Prediction Website
 This project is a stock price prediction web application that uses historical stock data, sentiment analysis, technical indicators, and a Long Short-Term Memory (LSTM) model to predict future stock prices. The app also provides an interactive visualization of stock data, moving averages, sentiment analysis, and future predictions, built with Streamlit.
 
-##Features
+## Features
 **Stock Price Prediction**: Predict future stock prices for up to 365 days using an LSTM neural network.
 **Sentiment Analysis:** Fetch and analyze recent news articles using sentiment analysis (VADER) to factor into predictions.
 **Technical Indicators**: Includes Moving Averages (MA) and Relative Strength Index (RSI) to help analyze stock trends.
 **Interactive Graphs:** Displays trading volume, historical prices, moving averages, and predicted prices with interactive visualizations.
 **Hover Data:** You can view detailed data when hovering over the charts, making the analysis more intuitive.
 
-##Technologies Used:
+## Technologies Used:
 Streamlit for the interactive web app.
 TensorFlow/Keras for the LSTM model.
 YFinance API for fetching historical stock data.
