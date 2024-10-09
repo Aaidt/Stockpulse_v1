@@ -10,16 +10,16 @@ This project is a Streamlit-based web application that predicts stock prices usi
 - **Interactive Visualizations**: Includes enhanced interactive plots for stock prices, technical indicators, and future price predictions.
 - **Trading Volume**: Displays trading volume over time as an easy-to-read bar chart.
 
-## How the Sentiment Analysis Works
+### How the Sentiment Analysis Works:
 Sentiment is derived from the most recent 30 days of news articles related to the stock. The VADER sentiment model classifies the news as positive, neutral, or negative, and this sentiment is used as an input feature for the LSTM model.
 
-## How LSTM Model Works
+### How LSTM Model Works:
 The Long Short-Term Memory (LSTM) model is trained on historical stock data (e.g., closing prices, volume) to predict future stock prices based on past trends and patterns.
 
-## Technical Indicators:
+### Technical Indicators:
 Moving Averages (MA10, MA30) smooth out price data to highlight trends, while the RSI (Relative Strength Index) helps identify overbought or oversold conditions, aiding in price trend analysis.
 
-## Trading Volume:
+### Trading Volume:
 A bar chart displays the stock's trading volume over time, helping users easily spot peaks in activity and liquidity.
 
 ## Technologies Used:
