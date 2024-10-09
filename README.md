@@ -28,7 +28,8 @@ A bar chart displays the stock's trading volume over time, helping users easily 
 ## Screenshots:
 
 <img src="screenshots/SPgif.gif" alt="Screenshot 2" width="700" height="400">
-<img src="screenshots/pred_front.png" title="FRONT PAGE" alt="Screenshot 1" width="500" height="300"> <img src="screenshots/raw_data.png" alt="Screenshot 2" width="500" height="300">
+<img src="screenshots/pred_front.png" alt="Screenshot 1" width="700" height="400"> 
+<img src="screenshots/raw_data.png" alt="Screenshot 2" width="700" height="400">
 <img src="screenshots/cp_MA.png" alt="Screenshot 2" width="700" height="400">
 <img src="screenshots/trading_vol.png" alt="Screenshot 2" width="700" height="400">
 <img src="screenshots/Senti_analysis.png" alt="Screenshot 2" width="700" height="400">
