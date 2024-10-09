@@ -41,13 +41,14 @@ To set up and run the project locally, follow these steps:
     pip install -r requirements.txt
     ```
 5. Add your NewsAPI Key:
+    ```bash
    newsapi = NewsApiClient(api_key='YOUR_API_KEY_HERE')
-   
-6. Run the Streamlit app:
+   ```
+7. Run the Streamlit app:
     ```bash
     streamlit run app.py
     ```
-7. Run the StockPulse website:
+8. Run the StockPulse website:
     ```bash
     python manage.py runserver
     ```
