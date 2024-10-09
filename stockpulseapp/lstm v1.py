@@ -343,3 +343,356 @@ if __name__ == "__main__":
     # mae = mean_absolute_error(predictions['actual'], predictions['predicted'])
     # mae_percentage = (mae / np.mean(predictions['actual'])) * 100
     # print(f"Mean absolute error on test set: {mae_percentage:.2f}%")
+
+    
+    ####STREAMLIT CODE#####
+    # import streamlit as st
+    # import pandas as pd
+    # import yfinance as yf
+    # import matplotlib.pyplot as plt
+    # import numpy as np
+    # import tensorflow as tf
+    # from sklearn.preprocessing import MinMaxScaler
+    # from tensorflow.keras.models import load_model
+    # from datetime import date, timedelta
+
+    # # Set start and end dates
+    # START = "2010-01-01"
+    # TODAY = date.today().strftime("%Y-%m-%d")
+
+    # # Load a pre-trained model (assuming you've already trained one)
+    # MODEL_PATH = 'my_model.keras'
+
+    # # Load the LSTM model
+    # model = load_model(MODEL_PATH)
+
+    # # Streamlit title and description
+    # st.title("Stock Price Prediction App")
+    # st.write("Enter the stock symbol (e.g., AAPL for Apple, TSLA for Tesla) and get predictions.")
+
+    # # Input field to accept stock symbol from user
+    # ticker = st.text_input("Enter stock symbol:", value='AAPL')
+
+    # # Input field to enter number of days to predict into the future
+    # n_days = st.number_input("Enter number of days to predict into the future:", min_value=1, value=10)
+
+    # # Button to trigger prediction
+    # if st.button("Predict"):
+    #     # Function to load stock data
+    #     def load_data(ticker):
+    #         data = yf.download(ticker, START, TODAY)
+    #         data.reset_index(inplace=True)
+    #         return data
+
+    #     # Load stock data
+    #     st.write(f"Fetching data for {ticker}...")
+    #     data = load_data(ticker)
+
+    #     # Display raw stock data in a table
+    #     st.subheader(f"Raw Data for {ticker}")
+    #     st.write(data.tail())  # Show last few rows of data
+
+    #     # Plot the closing price
+    #     st.subheader("Closing Price vs Time")
+    #     fig, ax = plt.subplots()
+    #     ax.plot(data['Date'], data['Close'], label="Closing Price")
+    #     ax.set_xlabel('Date')
+    #     ax.set_ylabel('Price (USD)')
+    #     ax.grid(True)
+    #     st.pyplot(fig)
+
+    #     # Prepare data for the model
+    #     df = data[['Close']]
+    #     scaler = MinMaxScaler(feature_range=(0, 1))
+    #     scaled_data = scaler.fit_transform(df.values)
+
+    #     # Prepare input for model prediction (using 10 days lookback as in your code)
+    #     def prepare_input(scaled_data, lookback=10):
+    #         X = []
+    #         for i in range(lookback, len(scaled_data)):
+    #             X.append(scaled_data[i-lookback:i, 0])
+    #         return np.array(X)
+
+    #     # Prepare the test data
+    #     X_input = prepare_input(scaled_data)
+    #     X_input = np.reshape(X_input, (X_input.shape[0], X_input.shape[1], 1))
+
+    #     # Predict the future prices
+    #     st.write("Predicting future prices...")
+    #     predicted_prices = model.predict(X_input)
+
+    #     # Inverse transform the predictions back to original scale
+    #     predicted_prices = scaler.inverse_transform(predicted_prices)
+
+    #     # Prepare future predictions (based on the last known input)
+    #     future_predictions = []
+    #     last_input = X_input[-1]  # Last 10 days of scaled data
+
+    #     for i in range(n_days):
+    #         next_prediction = model.predict(last_input.reshape(1, -1, 1))
+    #         future_predictions.append(next_prediction[0, 0])
+
+    #         # Append the predicted value and remove the oldest value (to simulate a rolling window)
+    #         last_input = np.append(last_input[1:], next_prediction)
+
+    #     # Inverse transform future predictions
+    #     future_predictions = scaler.inverse_transform(np.array(future_predictions).reshape(-1, 1))
+
+    #     # Create future dates for plotting
+    #     future_dates = [data['Date'].max() + timedelta(days=i+1) for i in range(n_days)]
+
+    #     # Plot the predictions
+    #     st.subheader("Predicted vs Actual Prices")
+    #     fig2, ax2 = plt.subplots()
+    #     ax2.plot(data['Date'][-len(predicted_prices):], predicted_prices, color='red', label="Predicted Prices")
+    #     ax2.plot(data['Date'], data['Close'], color='blue', label="Actual Prices")
+
+    #     # Plot future predictions
+    #     ax2.plot(future_dates, future_predictions, color='green', label="Future Predictions")
+    #     ax2.set_xlabel('Date')
+    #     ax2.set_ylabel('Price (USD)')
+    #     ax2.legend()
+    #     ax2.grid(True)
+    #     st.pyplot(fig2)
+
+    #     # Show future predictions in a table
+    #     future_df = pd.DataFrame({"Date": future_dates, "Predicted Price": future_predictions.flatten()})
+    #     st.subheader(f"Future Predictions for {ticker}")
+    #     st.write(future_df)
+
+
+
+    #####STREAMLIT CODE WITH SENTIMENT ANALYSIS, TADING VOLUMES#######
+    # 
+
+    ###### UPDATED CODE FOR INPUT VALUES #####
+    import streamlit as st
+    import pandas as pd
+    import yfinance as yf
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import tensorflow as tf
+    from sklearn.preprocessing import MinMaxScaler
+    from tensorflow.keras.models import Sequential
+    from tensorflow.keras.layers import LSTM, Dense, Dropout
+    from ta.momentum import RSIIndicator
+    from newsapi import NewsApiClient
+    from datetime import date, timedelta
+    from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+    import nltk
+    nltk.download('vader_lexicon')
+
+    # Initialize News API Client (Replace with your actual API Key)
+    newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
+
+    # Set start and end dates
+    START = "2010-01-01"
+    TODAY = date.today().strftime("%Y-%m-%d")
+
+    # Streamlit title and description
+    st.title("Enhanced Stock Price Prediction App")
+    st.write("Enter the stock symbol (e.g., AAPL for Apple, TSLA for Tesla) and get predictions, along with sentiment analysis and technical indicators.")
+
+    # Input field to accept stock symbol from user
+    ticker = st.text_input("Enter stock symbol:", value='AAPL')
+
+    # Input for number of days to predict into the future
+    days_ahead = st.number_input("Enter the number of days to predict:", min_value=1, max_value=365, value=30)
+
+    # Function to load stock data
+    def load_data(ticker):
+        data = yf.download(ticker, START, TODAY)
+        data.reset_index(inplace=True)
+        return data
+
+    # Function to calculate sentiment from news
+    def get_sentiment(ticker):
+        end_date = date.today().strftime("%Y-%m-%d")
+        start_date = (date.today() - timedelta(days=30)).strftime("%Y-%m-%d")
+        articles = newsapi.get_everything(q=ticker, from_param=start_date, to=end_date, language='en')
+
+        if articles['totalResults'] == 0:
+            return 0  # Neutral sentiment if no articles
+
+        # Initialize VADER sentiment analyzer
+        sia = SentimentIntensityAnalyzer()
+        sentiment_score = 0
+
+        for article in articles['articles']:
+            title = article['title']
+            description = article['description'] or ""
+            combined_text = title + " " + description
+
+            # Get the sentiment scores
+            score = sia.polarity_scores(combined_text)
+            sentiment_score += score['compound']  # Use the compound score
+
+        # Calculate average sentiment score
+        average_sentiment = sentiment_score / articles['totalResults']
+        
+        # Return sentiment as -1, 0, or 1
+        if average_sentiment > 0.05:
+            return 1  # Positive sentiment
+        elif average_sentiment < -0.05:
+            return -1  # Negative sentiment
+        else:
+            return 0  # Neutral sentiment
+
+    # Button to trigger prediction
+    if st.button("Predict"):
+        st.write(f"Fetching data for {ticker}...")
+        data = load_data(ticker)
+
+        # Calculate moving averages and RSI
+        data['MA10'] = data['Close'].rolling(window=10).mean()
+        data['MA30'] = data['Close'].rolling(window=30).mean()
+        rsi = RSIIndicator(data['Close'])
+        data['RSI'] = rsi.rsi()
+
+        # Fill missing values
+        data.fillna(method='bfill', inplace=True)
+
+        # Add sentiment analysis as a feature
+        sentiment = get_sentiment(ticker)
+        data['Sentiment'] = sentiment  # Use the sentiment from news analysis
+
+        # Display the updated data, including volume and sentiment
+        st.subheader("Raw Data with Indicators")
+        st.write(data[['Date', 'Close', 'Volume', 'MA10', 'MA30', 'RSI', 'Sentiment']].tail())
+
+        # Prepare the data for the model
+        features = ['Close', 'Volume', 'MA10', 'MA30', 'RSI', 'Sentiment']
+        df = data[features]
+        scaler = MinMaxScaler(feature_range=(0, 1))
+        scaled_data = scaler.fit_transform(df)
+
+        # Prepare input for model prediction (using a 10-day lookback)
+        def prepare_input(data, lookback=10):
+            X = []
+            for i in range(lookback, len(data)):
+                X.append(data[i-lookback:i])  # Append the last 'lookback' days of data
+            return np.array(X)
+
+        # Prepare the test data
+        X_input = prepare_input(scaled_data)
+        X_input = np.reshape(X_input, (X_input.shape[0], X_input.shape[1], X_input.shape[2]))  # Ensure 3D shape
+
+        # Build a new LSTM model (with adjusted input dimensions)
+        model = Sequential()
+        model.add(LSTM(units=50, return_sequences=True, input_shape=(X_input.shape[1], X_input.shape[2])))
+        model.add(Dropout(0.2))
+        model.add(LSTM(units=50))
+        model.add(Dropout(0.2))
+        model.add(Dense(1))  # Output layer for predicting stock prices
+
+        model.compile(optimizer='adam', loss='mean_squared_error')
+
+        # Train the model (for demonstration, we use a small number of epochs)
+        model.fit(X_input, scaled_data[10:, 0], epochs=5, batch_size=32)  # Train on 'Close' prices (1st column)
+
+        # Predict the future prices for the given number of days
+        st.write(f"Predicting stock prices for the next {days_ahead} days...")
+        
+        future_predictions = []
+        last_input = X_input[-1]  # Last input to base future predictions on
+        last_input = last_input.reshape(1, last_input.shape[0], last_input.shape[1])  # Reshape for prediction
+
+        for _ in range(days_ahead):
+            prediction = model.predict(last_input)
+            future_predictions.append(prediction[0][0])
+
+            # Prepare the new input based on the previous last_input and add the predicted price
+            new_features = last_input[0][-1].copy()
+            new_features[0] = prediction[0][0]  # Replace the Close price with the predicted price
+
+            # Append the new input for prediction with the previous features
+            new_input = np.append(last_input[0][1:], [new_features], axis=0)
+
+            # Reshape new_input to be 3D
+            last_input = new_input.reshape(1, new_input.shape[0], new_input.shape[1])
+
+        # Convert future predictions to a DataFrame for inverse transformation
+        last_known_features = scaled_data[-1].copy()  # Get the last known features from scaled_data
+        future_predictions_full = []
+
+        for predicted_price in future_predictions:
+            new_entry = last_known_features.copy()
+            new_entry[0] = predicted_price  # Set the 'Close' price
+            future_predictions_full.append(new_entry)
+
+        future_predictions_full = np.array(future_predictions_full)
+
+        # Inverse transform the predictions back to original scale
+        future_predictions_full = scaler.inverse_transform(future_predictions_full)
+
+        # Create DataFrame for future predictions
+        future_dates = pd.date_range(start=TODAY, periods=days_ahead)
+        future_df = pd.DataFrame({'Date': future_dates, 'Predicted Price': future_predictions_full[:, 0]})
+
+        
+
+        # Plot the trading volume as a larger bar chart
+        st.subheader("Trading Volume")
+        fig_volume, ax_volume = plt.subplots(figsize=(12, 6))
+        ax_volume.bar(data['Date'], data['Volume'], color='lightblue', width=1)  # Increased width for better visibility
+        ax_volume.set_xlabel('Date')
+        ax_volume.set_ylabel('Volume')
+        ax_volume.set_title('Trading Volume Over Time')
+        ax_volume.grid(axis='y')
+        st.pyplot(fig_volume)
+
+        # Improved plot for actual closing price along with moving averages
+        st.subheader("Closing Price and Moving Averages")
+        fig2, ax2 = plt.subplots(figsize=(12, 6))
+        ax2.plot(data['Date'], data['Close'], color='blue', label="Actual Closing Price", linewidth=2)
+        ax2.plot(data['Date'], data['MA10'], color='orange', label="10 Day MA", linestyle='--')
+        ax2.plot(data['Date'], data['MA30'], color='green', label="30 Day MA", linestyle='--')
+        ax2.set_xlabel('Date')
+        ax2.set_ylabel('Price (USD)')
+        ax2.set_title('Closing Price and Moving Averages')
+        ax2.legend()
+        ax2.grid()
+        st.pyplot(fig2)
+
+        # Plot sentiment analysis as a line plot
+        st.subheader("Sentiment Analysis")
+        fig_sentiment, ax_sentiment = plt.subplots(figsize=(12, 6))
+        ax_sentiment.plot(data['Date'], data['Sentiment'], color='purple', marker='o', linestyle='-')  # Line plot with markers
+        ax_sentiment.set_ylabel('Sentiment Value')
+        ax_sentiment.set_title('Sentiment Analysis Over Time')
+        ax_sentiment.set_ylim(-1, 1)  # Limit Y-axis to range [-1, 1]
+        ax_sentiment.grid()
+        st.pyplot(fig_sentiment)
+        
+        # Plot the predictions
+        st.subheader(f"Predicted Stock Prices for {ticker} for the next {days_ahead} days")
+        fig, ax = plt.subplots(figsize=(12, 6))
+        ax.plot(future_df['Date'], future_df['Predicted Price'], color='red', label="Predicted Prices", marker='o')
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Price (USD)')
+        ax.set_title('Future Stock Price Predictions')
+        ax.legend()
+        ax.grid(True)
+        st.pyplot(fig)
+
+        # Show future predictions in a table
+        st.subheader("Future Predictions")
+        st.write(future_df)
+
+
+######CODE FOR CHECKING NEWS API#########
+    # from newsapi import NewsApiClient
+
+    # # Initialize with your API key
+    # newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
+
+    # # Fetch general stock market news
+    # articles = newsapi.get_everything(q='stocks', language='en')
+
+    # # Display the articles fetched
+    # if articles['totalResults'] > 0:
+    #     for article in articles['articles']:
+    #         print(article['title'], "-", article['source']['name'])
+    # else:
+    #     print("No articles found.")
