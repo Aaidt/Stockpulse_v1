@@ -71,8 +71,8 @@ Sentiment is derived from the most recent 30 days of news articles related to th
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgements:
-- Streamlit(https://streamlit.io/): For building the web app interface.
-- TensorFlow/Kerashttps://www.tensorflow.org/): For creating and training the LSTM model.
-- yfinance(https://pypi.org/project/yfinance/): For fetching stock price data.
-- NewsAPI(https://newsapi.org/): For retrieving financial news articles.
-- NLTK (VADER Sentiment)(https://www.nltk.org/): For sentiment analysis of news articles.
+- [Streamlit](https://streamlit.io/): For building the web app interface.
+- [TensorFlow/Kerashttps](https://www.tensorflow.org/): For creating and training the LSTM model.
+- [yfinance](https://pypi.org/project/yfinance/): For fetching stock price data.
+- [NewsAPI](https://newsapi.org/): For retrieving financial news articles.
+- [NLTK (VADER Sentiment)](https://www.nltk.org/): For sentiment analysis of news articles.
