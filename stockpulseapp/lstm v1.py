@@ -484,7 +484,7 @@ if __name__ == "__main__":
     nltk.download('vader_lexicon')
 
     # Initialize News API Client (Replace with your actual API Key)
-    newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
+    newsapi = NewsApiClient(api_key='your_news_api_key')
 
     # Set start and end dates
     START = "2010-01-01"
