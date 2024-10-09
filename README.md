@@ -1,4 +1,4 @@
-📈 # Stock Prediction Website
+# **Stock Prediction Website**
 This project is a stock price prediction web application that uses historical stock data, sentiment analysis, technical indicators, and a Long Short-Term Memory (LSTM) model to predict future stock prices. The app also provides an interactive visualization of stock data, moving averages, sentiment analysis, and future predictions, built with Streamlit.
 
 ## Features
