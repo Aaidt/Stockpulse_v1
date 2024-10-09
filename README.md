@@ -10,6 +10,18 @@ This project is a Streamlit-based web application that predicts stock prices usi
 - **Interactive Visualizations**: Includes enhanced interactive plots for stock prices, technical indicators, and future price predictions.
 - **Trading Volume**: Displays trading volume over time as an easy-to-read bar chart.
 
+## How the Sentiment Analysis Works
+Sentiment is derived from the most recent 30 days of news articles related to the stock. The VADER sentiment model classifies the news as positive, neutral, or negative, and this sentiment is used as an input feature for the LSTM model.
+
+## How LSTM Model Works
+The Long Short-Term Memory (LSTM) model is trained on historical stock data (e.g., closing prices, volume) to predict future stock prices based on past trends and patterns.
+
+## Technical Indicators:
+Moving Averages (MA10, MA30) smooth out price data to highlight trends, while the RSI (Relative Strength Index) helps identify overbought or oversold conditions, aiding in price trend analysis.
+
+## Trading Volume:
+A bar chart displays the stock's trading volume over time, helping users easily spot peaks in activity and liquidity.
+
 ## Technologies Used:
 - **Streamlit**: For building the web app interface.
 - **TensorFlow/Keras**: For creating and training the LSTM model.
@@ -67,15 +79,6 @@ To set up and run the project locally, follow these steps:
 2. Enter a stock symbol (e.g., AAPL for Apple, TSLA for Tesla).
 3. Select the number of days to predict.
 4. View the stock's price history, sentiment analysis, technical indicators, and future price predictions.
-
-## How the Sentiment Analysis Works
-Sentiment is derived from the most recent 30 days of news articles related to the stock. The VADER sentiment model classifies the news as positive, neutral, or negative, and this sentiment is used as an input feature for the LSTM model.
-  
-## Future Improvements:
-- **User Authentication**: Add login functionality to personalize predictions.
-- **More Indicators**: Incorporate additional technical indicators such as MACD.
-- **Improved Model**: Use other machine learning techniques for better accuracy.
-- **Real-time Predictions**: Implement real-time stock predictions with live data.
 
 ## License:
 This project is licensed under the MIT License. See the LICENSE file for details.
