@@ -43,11 +43,11 @@ To set up and run the project locally, follow these steps:
 5. Add your NewsAPI Key:
    newsapi = NewsApiClient(api_key='YOUR_API_KEY_HERE')
    
-7. Run the Streamlit app:
+6. Run the Streamlit app:
     ```bash
     streamlit run app.py
     ```
-8. Run the StockPulse website:
+7. Run the StockPulse website:
     ```bash
     python manage.py runserver
     ```
@@ -71,8 +71,8 @@ Sentiment is derived from the most recent 30 days of news articles related to th
 This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgements:
-- **Streamlit**(https://streamlit.io/): For building the web app interface.
-- **TensorFlow/Keras**(https://www.tensorflow.org/): For creating and training the LSTM model.
-- **yfinance**(https://pypi.org/project/yfinance/): For fetching stock price data.
-- **NewsAPI**(https://newsapi.org/): For retrieving financial news articles.
-- **NLTK (VADER Sentiment)**(https://www.nltk.org/): For sentiment analysis of news articles.
+- Streamlit(https://streamlit.io/): For building the web app interface.
+- TensorFlow/Kerashttps://www.tensorflow.org/): For creating and training the LSTM model.
+- yfinance(https://pypi.org/project/yfinance/): For fetching stock price data.
+- NewsAPI(https://newsapi.org/): For retrieving financial news articles.
+- NLTK (VADER Sentiment)(https://www.nltk.org/): For sentiment analysis of news articles.
