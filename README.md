@@ -1,4 +1,4 @@
-# Enhanced Stock Price Prediction App
+# Stock Prediction Website
 
 ## Project Description:
 This project is a Streamlit-based web application that predicts stock prices using LSTM (Long Short-Term Memory) neural networks. The app also incorporates sentiment analysis of financial news and technical indicators like moving averages (MA) and RSI (Relative Strength Index) for enhanced stock price prediction.
