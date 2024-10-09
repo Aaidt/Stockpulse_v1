@@ -1,1 +1,12 @@
-pip install django streamlit pandas yfinance matplotlib numpy tensorflow scikit-learn ta newsapi-python nltk plotly
+django
+streamlit
+pandas
+yfinance
+matplotlib
+numpy
+tensorflow
+scikit-learn
+ta
+newsapi-python
+nltk
+plotly
