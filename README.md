@@ -75,8 +75,6 @@ To set up and run the project locally, follow these steps:
 3. Select the number of days to predict.
 4. View the stock's price history, sentiment analysis, technical indicators, and future price predictions.
 
-## License:
-This project is licensed under the MIT License. See the LICENSE file for details.
 
 ## Acknowledgements:
 - [Streamlit](https://streamlit.io/): For building the web app interface.
