@@ -206,13 +206,38 @@ if st.button("Predict"):
     st.write(predicted_vs_actual)
 
     # Plot the predicted vs actual prices for the last 30 days
+    # fig_compare = go.Figure()
+    # fig_compare.add_trace(go.Scatter(x=predicted_vs_actual['Date'], y=predicted_vs_actual['Actual Price'],
+    #                                  mode='lines', name='Actual Price'))
+    # fig_compare.add_trace(go.Scatter(x=predicted_vs_actual['Date'], y=predicted_vs_actual['Predicted Price'],
+    #                                  mode='lines', name='Predicted Price'))
+
+    # st.plotly_chart(fig_compare)
+    
+    
+        # Plot the predicted vs actual prices for the last 30 days
     fig_compare = go.Figure()
-    fig_compare.add_trace(go.Scatter(x=predicted_vs_actual['Date'], y=predicted_vs_actual['Actual Price'],
-                                     mode='lines', name='Actual Price'))
-    fig_compare.add_trace(go.Scatter(x=predicted_vs_actual['Date'], y=predicted_vs_actual['Predicted Price'],
-                                     mode='lines', name='Predicted Price'))
+
+    # Change the color of the 'Actual Price' line (e.g., blue)
+    fig_compare.add_trace(go.Scatter(
+        x=predicted_vs_actual['Date'], 
+        y=predicted_vs_actual['Actual Price'],
+        mode='lines', 
+        name='Actual Price',
+        line=dict(color='blue')  # Set the line color for actual prices
+    ))
+
+    # Change the color of the 'Predicted Price' line (e.g., red)
+    fig_compare.add_trace(go.Scatter(
+        x=predicted_vs_actual['Date'], 
+        y=predicted_vs_actual['Predicted Price'],
+        mode='lines', 
+        name='Predicted Price',
+        line=dict(color='red')  # Set the line color for predicted prices
+    ))
 
     st.plotly_chart(fig_compare)
+
 
     # Display the future predictions
     st.write("Predicted Stock Prices for the Next 30 Days")
