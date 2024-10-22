@@ -239,11 +239,11 @@ if st.button("Predict"):
     st.plotly_chart(fig_compare)
 
 
-    # Display the future predictions
-    st.write("Predicted Stock Prices for the Next 30 Days")
-    st.write(future_df)
+    # # Display the future predictions
+    # st.write("Predicted Stock Prices for the Next 30 Days")
+    # st.write(future_df)
 
-    # Plot future predictions
-    fig_future = go.Figure()
-    fig_future.add_trace(go.Scatter(x=future_df['Date'], y=future_df['Predicted Price'], mode='lines', name='Predicted Price'))
-    st.plotly_chart(fig_future)
+    # # Plot future predictions
+    # fig_future = go.Figure()
+    # fig_future.add_trace(go.Scatter(x=future_df['Date'], y=future_df['Predicted Price'], mode='lines', name='Predicted Price'))
+    # st.plotly_chart(fig_future)
