@@ -35,6 +35,9 @@ A bar chart displays the stock's trading volume over time, helping users easily 
 <img src="screenshots/Senti_analysis.png" alt="Screenshot 2" width="700" height="400">
 <img src="screenshots/pred_price.png" alt="Screenshot 2" width="700" height="400">
 <img src="screenshots/pred_table.png" alt="Screenshot 2" width="700" height="400">
+<img src="screenshots/TEST_front.png" alt="Screenshot 2" width="700" height="400">
+<img src="screenshots/test_m.png" alt="Screenshot 2" width="700" height="400">
+<img src="screenshots/test_graph.png" alt="Screenshot 2" width="700" height="400">
 
 ## Setup Instructions:
 To set up and run the project locally, follow these steps:
