@@ -17,6 +17,9 @@ Moving Averages (MA10, MA30) smooth out price data to highlight trends, while th
 ### Trading Volume:
 A bar chart displays the stock's trading volume over time, helping users easily spot peaks in activity and liquidity.
 
+### Testing predictions:
+To test the accuracy of the predictions made by the model, you can test the predictions by comparing it to the actual prices. The dataset is cut off at 30 days before the current date, allowing the user to test the model with actual stock market movement.
+
 ## Technologies Used:
 - **Streamlit**: For building the web app interface.
 - **TensorFlow/Keras**: For creating and training the LSTM model.
