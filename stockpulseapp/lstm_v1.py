@@ -486,7 +486,7 @@ if __name__ == "__main__":
     nltk.download('vader_lexicon')
 
     # Initialize News API Client (Replace with your actual API Key)
-    newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
+    newsapi = NewsApiClient(api_key='You_api_key_here')
 
     # Set start and end dates
     START = "2010-01-01"
@@ -781,7 +781,7 @@ if __name__ == "__main__":
     # from newsapi import NewsApiClient
 
     # # Initialize with your API key
-    # newsapi = NewsApiClient(api_key='ee93de27f75f49dd93997f391a741e7b')
+    # newsapi = NewsApiClient(api_key='You_api_key_here')
 
     # # Fetch general stock market news
     # articles = newsapi.get_everything(q='stocks', language='en')
